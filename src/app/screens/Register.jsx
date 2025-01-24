@@ -1,9 +1,18 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { useRegisterUserMutation } from '../apiSlice/authApiSlice';
+import { toast } from 'react-toastify';
+import {FadeLoader} from 'react-spinners';
+
 
 const Register = () => {
+    const [loading, setLoading] = useState(false);
+
+    const navigate = useNavigate()
+    // Register User Mutation
+    const [registerUser] = useRegisterUserMutation();
     // Validation schema using Yup
     const validationSchema = Yup.object({
         fullName: Yup.string()
@@ -23,17 +32,25 @@ const Register = () => {
         mobile: '',
         password: '',
     };
-
     // Handle form submission
-    const onSubmit = (values, { setSubmitting }) => {
-        console.log('Form Data Submitted:', values);
-        setSubmitting(false);
+
+    const onSubmit = async (values, { setSubmitting }) => {
+        setLoading(true);
+        registerUser(values).then((res) => {
+            if (res.data?.status === true) {
+               toast.success('Registration Successful! Please login to continue');
+               navigate('/login');
+               setLoading(false);
+            }
+        }).catch((err) => {
+            console.log(err);
+        }).finally(() => {
+            setLoading(false);
+        });
     };
 
-   const navigate = useNavigate()
-
     return (
-       
+
         <div className='p-4'>
             <div className="grid grid-cols-2">
                 {/* Left Side (Blue Background) */}
@@ -90,18 +107,24 @@ const Register = () => {
                                     </div>
 
                                     {/* Submit Button */}
-                                    <div className='flex justify-center bg-blue-600 p-2 rounded-md text-white hover:bg-blue-800'>
-                                        <button type="submit" disabled={isSubmitting} onClick={() => navigate('/login')}>
+                                    {loading ? (
+                                        <div className='flex justify-center'>
+                                            <FadeLoader className='text-center' color='#2563EB' loading={loading} size={7} />
+                                            </div>
+                                    ) : (
+                                        <div className='flex justify-center bg-blue-600 p-2 rounded-md text-white hover:bg-blue-800'>
+                                        <button type="submit" disabled={isSubmitting}>
                                             Register
                                         </button>
                                     </div>
+                                    )}
 
                                     {/* Login Link */}
                                     <div className='flex justify-center space-x-2'>
                                         <p className='text-gray-400'>Already have an account?</p>
-                                       <Link to={'/login'}>
-                                       <span className='text-blue-600 hover:text-cyan-500'>Login</span>
-                                       </Link>
+                                        <Link to={'/login'}>
+                                            <span className='text-blue-600 hover:text-cyan-500'>Login</span>
+                                        </Link>
                                     </div>
                                 </div>
                             </Form>
