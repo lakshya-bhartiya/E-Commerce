@@ -4,11 +4,12 @@ import * as Yup from 'yup';
 import { FaGoogle, FaFacebook, FaApple, FaEyeSlash, FaEye } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginUserMutation } from '../apiSlice/authApiSlice';
-import { BounceLoader } from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 
 const Login = () => {
 
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate()
 
     const [loginUser] = useLoginUserMutation();
     const loginSchema = Yup.object().shape({
@@ -36,7 +37,8 @@ const Login = () => {
                     const token = res.data.token;
                     localStorage.setItem('token', token);
                     setLoading(false);
-                    useNavigate("/home")
+                    navigate("/")
+                    
                 }
             }).catch((err) => {
                 console.log(err);
@@ -124,13 +126,14 @@ const Login = () => {
                                             </div>
 
                                             {/* Submit Button */}
-                                            <button
+                                            {loading? <p className='text-center'>Loading...</p>:<button
                                                 type="submit"
                                                 disabled={isSubmitting}
                                                 className="w-full bg-black text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
                                             >
-                                                {isSubmitting ? 'Logging in...' : 'Login'}
-                                            </button>
+                                                Login
+                                            </button>}
+                                            
                                         </Form>
                                     )}
                                 </Formik>
@@ -138,7 +141,7 @@ const Login = () => {
                             <div className="mt-4 text-center">
                                 <p className="text-sm text-gray-600">
                                     Don't have an account?{' '}
-                                    <Link to={'/'} className="text-blue-500 hover:text-blue-900">
+                                    <Link to={'/register'} className="text-blue-500 hover:text-blue-900">
                                         Register
                                     </Link>
                                 </p>
