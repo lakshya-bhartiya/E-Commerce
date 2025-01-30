@@ -19,7 +19,7 @@ const NavBar = () => {
     const { data: categories, isLoading } = useCategoriesQuery(token);
 
     const handleLogout = () => {
-        localStorage.removeItem(token)
+        localStorage.clear("token")
         navigate("/login")
     }
 
