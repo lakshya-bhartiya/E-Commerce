@@ -12,9 +12,16 @@ export const productsApi = createApi(
                     headers: {'Authorization': token}
                 }),
             }),
+            getSingleProduct: builder.query({
+                query: ({id, token}) => ({
+                    url:`/products/${id}`,
+                    method: 'GET',
+                    headers: {'Authorization': token}
+                }),
+            }),
         }
         )
     }
 )
 
-export const {useProductsQuery} = productsApi
+export const {useProductsQuery, useGetSingleProductQuery} = productsApi

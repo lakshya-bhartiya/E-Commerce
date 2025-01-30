@@ -1,49 +1,73 @@
 import { createBrowserRouter } from "react-router-dom";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-import Auth from "./components/Auth";
+import Auth from "./components/auth/Auth";
 import Home from "./screens/Home";
 import Electronics from "./screens/categories/Electronics";
 import Jewellary from "./screens/categories/Jewellary";
 import MenClothing from "./screens/categories/MenClothing";
 import WomenClothing from "./screens/categories/WomenClothing";
+import Withoutlogin from "./components/withoutlogin/Withoutlogin";
+import ProductDetails from "./screens/ProductDetails";
 
 const router = createBrowserRouter([{
     path: "/",
     children: [
         {
             path: "/",
-            element:<Home /> 
+            element: (
+                <Auth>
+                    <Home />
+                </Auth>
+            ),
         },
         {
             path: "login",
-            element: <Login />
+            element: (
+                <Withoutlogin>
+                    <Login />
+                </Withoutlogin>
+            ),
         },
         {
             path: "register",
-            element: <Register />
+            element: (
+                <Withoutlogin>
+                    <Register />
+                </Withoutlogin>
+            ),
         },
         {
             path: "category",
             children: [
                 {
                     path: "electronics",
-                    element: <Electronics/>
+                    element: <Electronics />
                 },
                 {
                     path: "jewelery",
-                    element: <Jewellary/>
+                    element: <Jewellary />
                 },
                 {
                     path: "men's clothing",
-                    element: <MenClothing/>
+                    element: <MenClothing />
                 },
                 {
                     path: "women's clothing",
-                    element: <WomenClothing/>
+                    element: <WomenClothing />
                 },
             ]
+        },
+        {
+            path: "product",
+            children: [
+                {
+                    path: ":id",
+                    element: <ProductDetails />
+                }
+            ]
         }
+
     ]
 }])
 

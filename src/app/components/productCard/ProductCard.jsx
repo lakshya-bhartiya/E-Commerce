@@ -1,7 +1,14 @@
 import React from 'react';
-import { useProductsQuery } from '../../apiSlice/productApi';
+import { useNavigate } from 'react-router-dom';
 
 const ProductCard = ({products}) => {
+
+  const navigate = useNavigate()
+
+  const handleProductClick = (id) => {
+    console.log("Clicked Product ID:", id); // ID console me dikhegi
+    navigate(`/product/${id}`); // Redirect to product detail page
+  };
 
   return (
     <div className="grid grid-cols-5 gap-4"> {/* Add a grid layout */}
@@ -9,6 +16,7 @@ const ProductCard = ({products}) => {
         <div
           key={product.id}
           className="flex flex-col border-2 bg-white p-4 rounded-lg shadow-md w-58 h-[24.5rem]"
+          onClick={() => handleProductClick(product.id)} // Add click event
         >
           <img 
             src={product.image} 
