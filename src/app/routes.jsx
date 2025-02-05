@@ -10,65 +10,66 @@ import WomenClothing from "./screens/categories/WomenClothing";
 import Withoutlogin from "./components/withoutlogin/Withoutlogin";
 import ProductDetails from "./screens/ProductDetails";
 
-const router = createBrowserRouter([{
+const router = createBrowserRouter([
+  {
     path: "/",
     children: [
-        {
-            path: "/",
-            element: (
-                <Auth>
-                    <Home />
-                </Auth>
-            ),
-        },
-        {
-            path: "login",
-            element: (
-                <Withoutlogin>
-                    <Login />
-                </Withoutlogin>
-            ),
-        },
-        {
-            path: "register",
-            element: (
-                <Withoutlogin>
-                    <Register />
-                </Withoutlogin>
-            ),
-        },
-        {
-            path: "category",
-            children: [
-                {
-                    path: "electronics",
-                    element: <Electronics />
-                },
-                {
-                    path: "jewelery",
-                    element: <Jewellary />
-                },
-                {
-                    path: "men's clothing",
-                    element: <MenClothing />
-                },
-                {
-                    path: "women's clothing",
-                    element: <WomenClothing />
-                },
-            ]
-        },
-        {
-            path: "product",
-            children: [
-                {
-                    path: ":id",
-                    element: <ProductDetails />
-                }
-            ]
-        }
-
-    ]
-}])
+      {
+        path: "/",
+        element: (
+          <Auth>
+            <Home />
+          </Auth>
+        ),
+      },
+      {
+        path: "login",
+        element: (
+          <Withoutlogin>
+            <Login />
+          </Withoutlogin>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <Withoutlogin>
+            <Register />
+          </Withoutlogin>
+        ),
+      },
+      {
+        path: "category",
+        children: [
+          {
+            path: "electronics",
+            element: <Electronics />,
+          },
+          {
+            path: "jewelery",
+            element: <Jewellary />,
+          },
+          {
+            path: "men's clothing",
+            element: <MenClothing />,
+          },
+          {
+            path: "women's clothing",
+            element: <WomenClothing />,
+          },
+        ],
+      },
+      {
+        path: "product",
+        children: [
+          {
+            path: ":id",
+            element: <ProductDetails />,
+          },
+        ],
+      },
+    ],
+  },
+]);
 
 export default router;
