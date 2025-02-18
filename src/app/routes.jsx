@@ -9,6 +9,7 @@ import MenClothing from "./screens/categories/MenClothing";
 import WomenClothing from "./screens/categories/WomenClothing";
 import Withoutlogin from "./components/withoutlogin/Withoutlogin";
 import ProductDetails from "./screens/ProductDetails";
+import Cart from "./screens/Cart";
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
             element: <ProductDetails />,
           },
         ],
+      },
+      {
+        path: "cart",
+        element: <Cart />,
       },
     ],
   },
