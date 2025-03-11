@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useGetSingleProductQuery } from "../apiSlice/productApi";
 import NavBar from "../components/navBar/NavBar";
 import Footer from "../components/footer/Footer";
-import { useAddCartMutation } from "../apiSlice/cartApiSlice";
 import { Toaster, toast } from "react-hot-toast";
 
 const ProductDetails = () => {

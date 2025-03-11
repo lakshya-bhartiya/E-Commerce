@@ -8,7 +8,7 @@ export const authApi = createApi({
     // Register User
     registerUser: builder.mutation({
       query: (userData) => ({
-        url: '/v1/register/create',
+        url: '/v1/user/create',
         method: 'POST',
         body: userData,
       }),
@@ -16,7 +16,7 @@ export const authApi = createApi({
     // Login User
     loginUser: builder.mutation({
       query: (credentials) => ({
-        url: '/v1/register/login',
+        url: '/v1/user/login',
         method: 'POST',
         body: credentials,
       }),

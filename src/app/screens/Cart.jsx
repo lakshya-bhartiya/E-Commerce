@@ -1,5 +1,4 @@
 import React from "react";
-import { useGetCartQuery } from "../apiSlice/cartApiSlice";
 
 const Cart = () => {
   const { data: cart, isLoading } = useGetCartQuery(1); // Fake Store API supports only userId=1

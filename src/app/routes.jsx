@@ -1,13 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-import Auth from "./components/auth/Auth";
 import Home from "./screens/Home";
 import Electronics from "./screens/categories/Electronics";
 import Jewellary from "./screens/categories/Jewellary";
 import MenClothing from "./screens/categories/MenClothing";
 import WomenClothing from "./screens/categories/WomenClothing";
-import Withoutlogin from "./components/withoutlogin/Withoutlogin";
 import ProductDetails from "./screens/ProductDetails";
 import Cart from "./screens/Cart";
 
@@ -18,25 +16,19 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <Auth>
             <Home />
-          </Auth>
         ),
       },
       {
         path: "login",
         element: (
-          <Withoutlogin>
             <Login />
-          </Withoutlogin>
         ),
       },
       {
         path: "register",
         element: (
-          <Withoutlogin>
             <Register />
-          </Withoutlogin>
         ),
       },
       {

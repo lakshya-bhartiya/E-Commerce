@@ -37,10 +37,13 @@ const Register = () => {
     const onSubmit = async (values, { setSubmitting }) => {
         setLoading(true);
         registerUser(values).then((res) => {
+            console.log(res)
             if (res.data?.status === true) {
                toast.success('Registration Successful! Please login to continue');
                navigate('/login');
                setLoading(false);
+            }else{
+                toast.error(res.data?.message)
             }
         }).catch((err) => {
             console.log(err);

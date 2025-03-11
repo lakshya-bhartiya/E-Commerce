@@ -21,7 +21,8 @@ const NavBar = () => {
 
     try {
       const payload = JSON.parse(atob(token.split(".")[1])); // Decode payload
-      return payload.fullName; // Extract username
+      console.log(payload)
+      return payload.name; // Extract username
     } catch (error) {
       console.error("Invalid token:", error);
       return null;
